@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Ideas - Flight Price Prediction</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Your custom CSS -->
+    <style>
+        #google-travel-news {
+            margin-top: 30px;
+        }
+       
+        /* Add your custom CSS styles here */
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FLIGHT PRICE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('travelblogs') }}">Travel Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('popularairlines') }}">Popular Airlines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('tripideas') }}">Trip Ideas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Trip Ideas Content -->
+    <div class="container mt-5">
+        <h1 class="text-center">TRIP IDEAS</h1>
+        <!-- Buttons for selecting trip ideas -->
+        <div class="text-center mt-4 mb-4">
+            <button class="btn btn-primary mr-2" id="button1">Friend & Family</button>
+            <button class="btn btn-primary mr-2" id="button2">Beach</button>
+            <button class="btn btn-primary mr-2" id="button3">Nature</button>
+            <button class="btn btn-primary" id="button4">Culture</button>
+        </div>
+        <!-- Cards section -->
+        <div class="row" id="cardContainer">
+            <!-- Cards will be dynamically generated here -->
+        </div>
+    </div>
+    
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <!-- Your custom JavaScript -->
+    <script>
+        $(document).ready(function () {
+            // Define card data
+            var cardData = [
+            { image: 'static/Tripideas/1.jpg', heading: 'Vanarasi', details: 'Uttar Pradesh, India', price: 'Round Trip from- 24,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Varanasi&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLEMsyyNjLQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4EStHWGJRYl5icSYAkxay70UAAAA&ved=2ahUKEwjA5vD6z-yEAxW3XWwGHUTPCNcQ2coHegQIIRAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/2.jpg', heading: 'Puri', details: 'Odisha, India', price: 'Round Trip from - 19,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Puri&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLFMSgpNjbQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4EStLQGlRJgATQWk9QQAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIIBAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/3.jpg', heading: 'Jaipur', details: 'Rajasthan, India', price: 'Round Trip from - 26,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Jaipur&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLEMzcyNjLQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4ESubV2JmQWkRAMjVRb1DAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIHhAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/4.jpg', heading: 'Manali', details: 'Himachal Pradesh, India', price: 'Round Trip from- 15,000 - Two Person', link: 'https://www.google.com/search?q=manali&sca_esv=c949d4034829414a&rlz=1C1ONGR_enIN983IN983&ei=JT_vZZjXAb-b4-EP1riJkA8&gs_ssp=eJzj4tTP1TcwMaswqTBg9GLLTcxLzMkEADODBZA&oq=mana&gs_lp=Egxnd3Mtd2l6LXNlcnAiBG1hbmEqAggAMg0QLhiABBiKBRhDGLEDMhYQLhiABBiKBRhDGLEDGIMBGMcBGNEDMg0QABiABBiKBRhDGLEDMgUQABiABDINEAAYgAQYigUYQxixAzIFEAAYgAQyDhAAGIAEGIoFGLEDGIMBMg0QABiABBiKBRhDGLEDMggQABiABBixAzIOEAAYgAQYigUYsQMYgwEyHBAuGIAEGIoFGEMYsQMYlwUY3AQY3gQY4ATYAQNIhiFQsBNY2hZwAXgBkAEAmAGGAqABxQeqAQMyLTS4AQPIAQD4AQGYAgagApMSqAIUwgITEC4YgAQYigUYQxjqAhi0AtgBAcICExAAGIAEGIoFGEMY6gIYtALYAQHCAhkQLhiABBiKBRhDGMcBGK8BGOoCGLQC2AEBwgIWEC4YAxiPARjlAhjqAhi0AhiMA9gBAsICFhAAGAMYjwEY5QIY6gIYtAIYjAPYAQLCAgoQLhiABBiKBRhDwgIREC4YgAQYsQMYgwEYxwEY0QPCAgsQABiABBixAxiDAcICCxAuGIAEGLEDGIMBwgIZEC4YgAQYigUYQxiXBRjcBBjeBBjgBNgBA8ICEBAAGIAEGIoFGEMYsQMYgwHCAhAQLhiABBiKBRhDGLEDGIMBwgIZEC4YgAQYigUYQxiXBRjcBBjeBBjfBNgBA8ICChAAGIAEGIoFGEPCAisQLhiABBiKBRhDGLEDGIMBGJcFGNwEGN4EGOAEGPQDGPEDGPUDGPYD2AEDmAMSugYECAEYB7oGBggCEAEYCroGBggDEAEYFJIHCTEuMC40LjctMaAH2lY&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/5.jpg', heading: 'Mumbai', details: 'Maharashtra, India', price: 'Round Trip from- 28,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Mumbai&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlACs0zKcgu0FLOTrfRz8pMTSzLz8-AMq8SSkqLEZBCzeBErm29pblJiJgCneWbrQgAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIFRAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/6.jpg', heading: 'Kolkata', details: 'West Bengal, India', price: 'Round Trip from - 18,000 - Two Person', link: 'https://www.google.com/search?gs_ssp=eJzj4tDP1TdILiu3NGD0Ys_Oz8lOLEkEADhsBgA&q=kolkata&rlz=1C1ONGR_enIN983IN983&oq=Kol&gs_lcrp=EgZjaHJvbWUqDQgBEC4YgwEYsQMYgAQyBggAEEUYOTINCAEQLhiDARixAxiABDIHCAIQABiABDIHCAMQABiABDINCAQQLhiDARixAxiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEIMjMzNGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8' },
+            ];
+
+            // Function to generate cards based on data
+            function generateCards(data) {
+                var html = '';
+                data.forEach(function (item) {
+                    html += '<div class="col-md-4 mb-4"><div class="card">';
+                    html += '<img src="' + item.image + '" class="card-img-top" alt="Card Image">';
+                    html += '<div class="card-body">';
+                    html += '<h5 class="card-title">' + item.heading + '</h5>';
+                    html += '<p class="card-text">' + item.details + '</p>';
+                    html += '<p class="card-text">' + item.price + '</p>';
+                    html += '<a href="' + item.link + '" class="btn btn-primary">Explore More</a>';
+                    html += '</div></div></div>';
+                });
+                $('#cardContainer').html(html);
+            }
+
+            // Initial generation of cards
+            generateCards(cardData);
+
+            // Button click event handlers
+            $('#button1').click(function () {
+                // Change card data as needed
+                var newData = [
+                    { image: 'static/Tripideas/1.jpg', heading: 'Vanarasi', details: 'Uttar Pradesh, India', price: 'Round Trip from- 24,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Varanasi&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLEMsyyNjLQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4EStHWGJRYl5icSYAkxay70UAAAA&ved=2ahUKEwjA5vD6z-yEAxW3XWwGHUTPCNcQ2coHegQIIRAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/2.jpg', heading: 'Puri', details: 'Odisha, India', price: 'Round Trip from - 19,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Puri&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLFMSgpNjbQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4EStLQGlRJgATQWk9QQAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIIBAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/3.jpg', heading: 'Jaipur', details: 'Rajasthan, India', price: 'Round Trip from - 26,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Jaipur&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlDiBLEMzcyNjLQUs5Ot9HPykxNLMvPz4AyrxJKSosRkELN4ESubV2JmQWkRAMjVRb1DAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIHhAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/4.jpg', heading: 'Manali', details: 'Himachal Pradesh, India', price: 'Round Trip from- 15,000 - Two Person', link: 'https://www.google.com/search?q=manali&sca_esv=c949d4034829414a&rlz=1C1ONGR_enIN983IN983&ei=JT_vZZjXAb-b4-EP1riJkA8&gs_ssp=eJzj4tTP1TcwMaswqTBg9GLLTcxLzMkEADODBZA&oq=mana&gs_lp=Egxnd3Mtd2l6LXNlcnAiBG1hbmEqAggAMg0QLhiABBiKBRhDGLEDMhYQLhiABBiKBRhDGLEDGIMBGMcBGNEDMg0QABiABBiKBRhDGLEDMgUQABiABDINEAAYgAQYigUYQxixAzIFEAAYgAQyDhAAGIAEGIoFGLEDGIMBMg0QABiABBiKBRhDGLEDMggQABiABBixAzIOEAAYgAQYigUYsQMYgwEyHBAuGIAEGIoFGEMYsQMYlwUY3AQY3gQY4ATYAQNIhiFQsBNY2hZwAXgBkAEAmAGGAqABxQeqAQMyLTS4AQPIAQD4AQGYAgagApMSqAIUwgITEC4YgAQYigUYQxjqAhi0AtgBAcICExAAGIAEGIoFGEMY6gIYtALYAQHCAhkQLhiABBiKBRhDGMcBGK8BGOoCGLQC2AEBwgIWEC4YAxiPARjlAhjqAhi0AhiMA9gBAsICFhAAGAMYjwEY5QIY6gIYtAIYjAPYAQLCAgoQLhiABBiKBRhDwgIREC4YgAQYsQMYgwEYxwEY0QPCAgsQABiABBixAxiDAcICCxAuGIAEGLEDGIMBwgIZEC4YgAQYigUYQxiXBRjcBBjeBBjgBNgBA8ICEBAAGIAEGIoFGEMYsQMYgwHCAhAQLhiABBiKBRhDGLEDGIMBwgIZEC4YgAQYigUYQxiXBRjcBBjeBBjfBNgBA8ICChAAGIAEGIoFGEPCAisQLhiABBiKBRhDGLEDGIMBGJcFGNwEGN4EGOAEGPQDGPEDGPUDGPYD2AEDmAMSugYECAEYB7oGBggCEAEYCroGBggDEAEYFJIHCTEuMC40LjctMaAH2lY&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/5.jpg', heading: 'Mumbai', details: 'Maharashtra, India', price: 'Round Trip from- 28,000 - Two Person', link: 'https://www.google.com/search?sa=X&sca_esv=673643cfd9d73a9d&rlz=1C1ONGR_enIN983IN983&q=Mumbai&stick=H4sIAAAAAAAAAONgFuLQz9U3MC7KNlACs0zKcgu0FLOTrfRz8pMTSzLz8-AMq8SSkqLEZBCzeBErm29pblJiJgCneWbrQgAAAA&ved=2ahUKEwiastbD3eyEAxXwm2MGHWBICY8Q2coHegQIFRAB&biw=1536&bih=776&dpr=1.25' },
+                    { image: 'static/Tripideas/6.jpg', heading: 'Kolkata', details: 'West Bengal, India', price: 'Round Trip from - 18,000 - Two Person', link: 'https://www.google.com/search?gs_ssp=eJzj4tDP1TdILiu3NGD0Ys_Oz8lOLEkEADhsBgA&q=kolkata&rlz=1C1ONGR_enIN983IN983&oq=Kol&gs_lcrp=EgZjaHJvbWUqDQgBEC4YgwEYsQMYgAQyBggAEEUYOTINCAEQLhiDARixAxiABDIHCAIQABiABDIHCAMQABiABDINCAQQLhiDARixAxiABDIHCAUQABiABDIHCAYQABiABDIGCAcQRRg80gEIMjMzNGowajmoAgCwAgA&sourceid=chrome&ie=UTF-8' },
+                ];
+                generateCards(newData);
+            });
+
+            $('#button2').click(function () {
+                var newData = [
+                    { image: 'static/Tripideas/7.jpg', heading: 'Baga Beach', details: 'Goa, India', price: 'Round Trip from - 20,000 - Two Person', link: 'https://www.google.com/search?q=goa&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=uUzvZarkBqDV4-EP5qWG6AY&ved=0ahUKEwjqpM7j6uyEAxWg6jgGHeaSAW0Q4dUDCBE&uact=5&oq=goa&gs_lp=Egxnd3Mtd2l6LXNlcnAiA2dvYTINEAAYgAQYigUYQxixAzITEC4YgAQYigUYQxixAxjHARivATIKEAAYgAQYigUYQzIKEC4YgAQYigUYQzIKEAAYgAQYigUYQzINEAAYgAQYigUYQxixAzINEAAYgAQYigUYQxixAzIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzINEAAYgAQYigUYQxixA0jvElC0AVizD3ADeAGQAQCYAZcBoAG3BaoBAzAuNbgBA8gBAPgBAZgCCKAC6QWoAhTCAhMQLhiABBiKBRhDGOoCGLQC2AEBwgITEAAYgAQYigUYQxjqAhi0AtgBAcICFhAuGAMYjwEY5QIY6gIYtAIYjAPYAQLCAhYQABgDGI8BGOUCGOoCGLQCGIwD2AECwgIQEC4YgAQYigUYQxjHARivAcICFhAuGIAEGIoFGEMYsQMYgwEYxwEY0QPCAgUQABiABMICCBAuGIAEGLEDwgIUEC4YgAQYigUYsQMYgwEYxwEYrwHCAgsQLhiABBjHARivAcICFhAuGIAEGIoFGEMYxwEYrwEYmAUYmgXCAhYQLhhDGK8BGMcBGIAEGIoFGJgFGJoFwgIREC4YgAQYigUYsQMYxwEYrwHCAhEQLhiABBixAxiDARjHARjRA8ICGRAuGIAEGIoFGEMYxwEYrwEYmAUYngUYmQXCAg4QABiABBiKBRixAxiDAcICCBAAGIAEGLEDwgILEAAYgAQYsQMYgwGYAxG6BgQIARgHugYGCAIQARgKkgcDMy41oAfISA&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/8.jpg', heading: 'Digha', details: 'West Bengal, India', price: 'Round Trip from - 18,000 - Two Person', link: 'https://www.google.com/search?q=digha&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=zEzvZdGzHvCP4-EPrZ6o0A0&gs_ssp=eJzj4tTP1TdITqooMjVg9GJNyUzPSAQAMqgFcA&oq=digha&gs_lp=Egxnd3Mtd2l6LXNlcnAiBWRpZ2hhKgIIADINEC4YQxixAxiABBiKBTINEC4YQxixAxiABBiKBTIFEAAYgAQyBRAuGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMg0QABiABBiKBRhDGLEDMgUQLhiABDIKEAAYgAQYigUYQzIcEC4YQxixAxiABBiKBRiXBRjcBBjeBBjgBNgBA0ipJlDtD1jqFXABeAGQAQCYAakBoAGhBaoBAzAuNbgBAcgBAPgBAZgCB6ACtxWoAhTCAhMQABiABBiKBRhDGOoCGLQC2AEBwgIZEC4YgAQYigUYQxjHARivARjqAhi0AtgBAcICFhAuGAMYjwEY5QIY6gIYtAIYjAPYAQLCAhYQABgDGI8BGOUCGOoCGLQCGIwD2AECwgILEAAYgAQYsQMYgwHCAgoQLhiABBiKBRhDwgIOEAAYgAQYigUYsQMYgwHCAggQABiABBixA8ICEBAAGIAEGIoFGEMYsQMYgwHCAg0QLhiABBiKBRhDGLEDwgILEC4YgAQYxwEY0QOYAw26BgQIARgHugYGCAIQARgKugYGCAMQARgUkgcHMS41LjctMaAHs0o&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/9.jpg', heading: 'Andretti', details: 'Lakshadweep, India', price: 'Round Trip from - 25,000 - Two Person', link: 'https://www.google.com/search?q=lakshadweep&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=5UzvZdevJc6v4-EPitC0uAE&gs_ssp=eJzj4tTP1TcwNzNKyzJg9OLOScwuzkhMKU9NLQAAU6gHjQ&oq=la&gs_lp=Egxnd3Mtd2l6LXNlcnAiAmxhKgIIADIIEC4YgAQYsQMyEBAuGIAEGIoFGEMYsQMYgwEyChAAGIAEGIoFGEMyBRAuGIAEMgsQABiABBixAxiDATIOEC4YgAQYsQMYxwEY0QMyCxAAGIAEGLEDGIMBMggQABiABBixAzIOEC4YgAQYigUYsQMYgwEyCxAuGIAEGLEDGIMBMhcQLhiABBixAxiXBRjcBBjeBBjgBNgBA0jkE1D2A1iNBXABeAGQAQCYAesBoAH1AqoBBTAuMS4xuAEByAEA-AEBmAIFoAKFG6gCFMICFhAuGAMYjwEY5QIY6gIYtAIYjAPYAQHCAhYQABgDGI8BGOUCGOoCGLQCGIwD2AEBwgIUEAAYgAQY4wQY6QQY6gIYtALYAQLCAhMQLhiABBiKBRhDGOoCGLQC2AECwgITEC4YQxiABBiKBRjqAhi0AtgBAsICExAAGIAEGIoFGEMY6gIYtALYAQLCAg4QABiABBiKBRixAxiDAcICFBAuGIAEGIoFGLEDGIMBGMcBGK8BwgILEAAYgAQYigUYsQPCAhEQLhiABBixAxiDARjHARjRA8ICFBAuGIAEGJcFGNwEGN4EGOAE2AEDwgIfEC4YgAQYigUYQxixAxiDARiXBRjcBBjeBBjgBNgBA5gDCroGBggBEAEYCroGBAgCGAe6BgYIAxABGBSSBwkxLjEuMS43LTKgB8Id&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/10.jpg', heading: 'Pondicherry', details: 'India', price: 'Round Trip from - 18,000 - Two Person', link: 'https://www.google.com/search?q=pondicherry&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=-k3vZbWmBciO2roP4dCx8Ao&gs_ssp=eJzj4tTP1TcwNze3LDdg9OIuyM9LyUzOSC0qqgQAUmwHkQ&oq=pondi&gs_lp=Egxnd3Mtd2l6LXNlcnAiBXBvbmRpKgIIAzIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzIKEAAYgAQYigUYQzINEC4YQxixAxiABBiKBTINEAAYgAQYigUYQxixAzIFEAAYgAQyDRAAGIAEGIoFGEMYsQMyChAAGIAEGIoFGEMyEBAuGIAEGIoFGEMYsQMYgwEyDhAuGIAEGLEDGMcBGK8BMhwQLhhDGLEDGIAEGIoFGJcFGNwEGN4EGOAE2AEDSKU2ULoBWL4fcAF4AZABAJgBkAGgAZkFqgEDMC41uAEByAEA-AEBmAIJoAKtQ6gCFMICExAuGEMYgAQYigUY6gIYtALYAQHCAhMQABiABBiKBRhDGOoCGLQC2AEBwgITEC4YgAQYigUYQxjqAhi0AtgBAcICFhAuGAMYjwEY5QIY6gIYtAIYjAPYAQLCAhYQABgDGI8BGOUCGOoCGLQCGIwD2AECwgIKEC4YgAQYigUYQ8ICCxAAGIAEGLEDGIMBwgIOEC4YgAQYigUYsQMYgwHCAhkQLhiABBiKBRhDGJcFGNwEGN4EGOAE2AEDwgIQEC4YgAQYigUYQxjHARivAcICDRAuGIAEGIoFGEMYsQPCAg4QABiABBiKBRixAxiDAZgDDroGBAgBGAe6BgYIAhABGAq6BgYIAxABGBSSBwcxLjUuOC0zoAedSQ&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/11.jpg', heading: 'Havelock Island', details: 'Andaman & Nicober Island, India', price: 'Round Trip from - 19,000 - Two Person', link: 'https://www.google.com/search?q=andaman+and+nicobar+islands&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=5E3vZc2QPNmy4-EPtZGGmAE&gs_ssp=eJzj4tDP1TdILitLNmD0kk7MS0nMTcxTANIKeZnJ-UmJRQqZxTlAbjEA_pQNhQ&oq=anda&gs_lp=Egxnd3Mtd2l6LXNlcnAiBGFuZGEqAggAMg0QLhhDGLEDGIAEGIoFMg0QABiABBiKBRhDGLEDMg0QABiABBiKBRhDGLEDMgoQABiABBiKBRhDMgoQABiABBiKBRhDMgUQABiABDIKEAAYgAQYigUYQzIFEAAYgAQyBRAAGIAEMggQABiABBixAzIcEC4YQxixAxiABBiKBRiXBRjcBBjeBBjgBNgBA0iuEFA0WMEFcAF4AZABAJgBiwGgAYwEqgEDMC40uAEByAEA-AEBmAIFoAK_BKgCFMICExAAGIAEGIoFGEMY6gIYtALYAQHCAhMQLhiABBiKBRhDGOoCGLQC2AEBwgIZEC4YgAQYigUYQxjHARivARjqAhi0AtgBAcICFhAuGAMYjwEY5QIY6gIYtAIYjAPYAQLCAhYQABgDGI8BGOUCGOoCGLQCGIwD2AECwgIKEC4YgAQYigUYQ8ICEBAuGIAEGIoFGEMYxwEY0QPCAhEQLhiABBixAxiDARjHARjRA8ICCxAuGIAEGMcBGNEDwgILEAAYgAQYsQMYgwHCAggQLhiABBixA8ICFBAuGIAEGIoFGLEDGIMBGMcBGNEDwgIZEC4YgAQYigUYQxiXBRjcBBjeBBjgBNgBA8ICCxAuGIAEGMcBGK8BwgIIEC4YsQMYgATCAg0QLhiABBiKBRhDGLEDwgIKEC4YQxiABBiKBcICGRAuGEMYgAQYigUYlwUY3AQY3gQY4ATYAQOYAw-6BgQIARgHugYGCAIQARgKugYGCAMQARgUkgcDMS40oAepPA&sclient=gws-wiz-serp' },
+                    { image: 'static/Tripideas/12.jpg', heading: 'Varkala', details: 'Kerala, India', price: 'Round Trip from - 18,000 - Two Person', link: 'https://www.google.com/search?q=varkala&sca_esv=cfa97c458ab2bfe3&rlz=1C1ONGR_enIN983IN983&ei=GU7vZcPDGfyM4-EPiNGNiAc&gs_ssp=eJzj4tTP1TcwTivKzTBg9GIvSyzKTsxJBAA-bQZT&oq=var&gs_lp=Egxnd3Mtd2l6LXNlcnAiA3ZhcioCCAAyDRAuGIAEGIoFGEMYsQMyDRAuGIAEGIoFGEMYsQMyDRAuGIAEGIoFGEMYsQMyDRAuGIAEGIoFGEMYsQMyBRAAGIAEMgsQLhiABBixAxiDATIFEAAYgAQyCBAuGIAEGLEDMgUQLhiABDIKEAAYgAQYigUYQzIcEC4YgAQYigUYQxixAxiXBRjcBBjeBBjgBNgBA0iHHFCOBVjYDnACeAGQAQCYAYoBoAHwA6oBAzAuNLgBAcgBAPgBAZgCB6AC2Q6oAhTCAhMQLhhDGIAEGIoFGOoCGLQC2AEBwgITEAAYgAQYigUYQxjqAhi0AtgBAcICGRAuGIAEGIoFGEMYxwEYrwEY6gIYtALYAQHCAhYQLhgDGI8BGOUCGOoCGLQCGIwD2AECwgIWEAAYAxiPARjlAhjqAhi0AhiMA9gBAsICBBAAGAPCAhAQABiABBiKBRhDGLEDGIMBwgIKEC4YgAQYigUYQ8ICCxAuGIAEGMcBGNEDwgIOEAAYgAQYigUYsQMYgwHCAgsQLhiABBiKBRiRAsICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAhoQLhiABBiKBRiRAhiXBRjcBBjeBBjgBNgBA8ICEBAuGIAEGIoFGEMYxwEYrwHCAg4QLhiDARixAxiABBiKBZgDDboGBAgBGAe6BgYIAhABGAq6BgYIAxABGBSSBwcyLjQuNy0xoAfpTg&sclient=gws-wiz-serp' },
+                ];
+                generateCards(newData);
+                // Change card data for button 2
+            });
+
+            $('#button3').click(function () {
+                var newData = [
+                    { image: 'static/images/1.jpg', heading: 'New Card 1 Heading', details: 'New Card 1 Details', price: 'New Card 1 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 2 Heading', details: 'New Card 2 Details', price: 'New Card 2 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 3 Heading', details: 'New Card 3 Details', price: 'New Card 3 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 4 Heading', details: 'New Card 4 Details', price: 'New Card 4 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 5 Heading', details: 'New Card 5 Details', price: 'New Card 5 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 6 Heading', details: 'New Card 6 Details', price: 'New Card 6 Price', link: '#' },
+                ];
+                generateCards(newData);
+                // Change card data for button 3
+            });
+
+            $('#button4').click(function () {
+                var newData = [
+                    { image: 'static/images/1.jpg', heading: 'New Card 1 Heading', details: 'New Card 1 Details', price: 'New Card 1 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 2 Heading', details: 'New Card 2 Details', price: 'New Card 2 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 3 Heading', details: 'New Card 3 Details', price: 'New Card 3 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 4 Heading', details: 'New Card 4 Details', price: 'New Card 4 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 5 Heading', details: 'New Card 5 Details', price: 'New Card 5 Price', link: '#' },
+                    { image: 'static/images/1.jpg', heading: 'New Card 6 Heading', details: 'New Card 6 Details', price: 'New Card 6 Price', link: '#' },
+                ];
+                generateCards(newData);
+                // Change card data for button 4
+            });
+
+            // Similar click event handlers for other buttons (button2, button3, button4)
+        });
+    </script>
+</body>
+
+</html>

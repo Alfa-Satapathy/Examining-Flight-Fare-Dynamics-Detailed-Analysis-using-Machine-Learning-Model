@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blogs - STORIES</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <style>
+        /* Custom CSS for adding white space and styling text */
+        .carousel-caption {
+            background-color: rgba(255, 255, 255, 0.7); /* Adding white background with transparency */
+            padding: 20px; /* Adding padding for white space */
+        }
+
+        .carousel-caption h5 {
+            font-weight: bold; /* Making heading text bold */
+            color: black; /* Setting heading text color to black */
+        }
+
+        .carousel-caption p {
+            color: black; /* Setting paragraph text color to black */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">FLIGHT PRICE</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <div class="container">
+        <h1 class="text-center font-weight-bold">STORIES</h1>
+        <br>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/1.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Rising Above: How Low-Cost Carriers are Revolutionizing Air Travel</h5>
+                        <p>This story explores the emergence and impact of low-cost carriers (LCCs) in the airline industry. It delves into their business models, strategies, and the ways in which they have reshaped the aviation landscape by making air travel more accessible and affordable to a wider range of passengers</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/2.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Navigating Turbulent Skies: Challenges and Innovations in Sustainable Aviation</h5>
+                        <p>This story investigates the environmental challenges faced by the aviation industry and the innovative solutions being developed to address them. It covers topics such as alternative fuels, carbon offset programs, aircraft design advancements, and the industry's commitment to reducing its carbon footprint while meeting the growing demand for air travel.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/3.jpg') }}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>The Future of Flight: Exploring the Promise and Potential of Electric Aircraft</h5>
+                        <p>This story examines the emerging field of electric aviation and its potential to transform the way we travel by air. It explores the latest advancements in electric propulsion technology, the development of electric aircraft prototypes, and the environmental and economic benefits of transitioning to electric-powered flight.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Section for Popular Airlines -->
+    <section class="popular-airlines">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Popular Airlines in India</strong></p>
+                    <p>Book cheap flights on your favorite airlines</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="https://www.goindigo.in/"><img src="{{ url_for('static', filename='images/airline1.jpg') }}" alt="Airline 1" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.airindia.com/"><img src="{{ url_for('static', filename='images/airline2.jpg') }}" alt="Airline 2" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.spicejet.com/"><img src="{{ url_for('static', filename='images/airline3.jpg') }}" alt="Airline 3" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.airvistara.com/in/en"><img src="{{ url_for('static', filename='images/airline4.jpg') }}" alt="Airline 4" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.airindiaexpress.com/home"><img src="{{ url_for('static', filename='images/airline5.jpg') }}" alt="Airline 5" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.flydubai.com/en/"><img src="{{ url_for('static', filename='images/airline6.jpg') }}" alt="Airline 6" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.airarabia.com/en"><img src="{{ url_for('static', filename='images/airline7.jpg') }}" alt="Airline 7" class="img-fluid"></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="https://www.airindiaexpress.com/home"><img src="{{ url_for('static', filename='images/airline8.jpg') }}" alt="Airline 8" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
